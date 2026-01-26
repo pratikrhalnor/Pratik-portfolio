@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import imgHead from '../../assets/head.png'
-import imgExp from '../../assets/Exp.png'
+import imgHead from '../../assets/gear.png'
+import imgExp from '../../assets/connects.png'
 import './Experience_title.css'
 
 gsap.registerPlugin(ScrollTrigger)
