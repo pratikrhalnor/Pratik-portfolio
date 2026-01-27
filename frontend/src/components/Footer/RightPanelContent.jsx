@@ -51,7 +51,7 @@ const RightPanelContent = () => {
             }
         } catch (error) {
             console.error('Submission Error:', error);
-            alert(`Error: ${error.message}\n\n(Make sure the backend is running and your message is at least 10 characters long)`);
+            alert(`Error: ${error.message}\n\nAttempted URL: ${BACKEND_URL}\n\n(If it shows localhost, your Vercel redeploy didn't pick up the environment variable)`);
         } finally {
             setLoading(false);
         }
