@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { Resend } from 'resend';
+import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 
@@ -16,6 +17,18 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Rate limiting: 3 requests per 15 minutes per IP
+const contactLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 3, // Limit each IP to 3 requests per window
+    message: {
+        success: false,
+        error: 'Too many requests. Please try again later.'
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
 // Health check route
 app.get('/', (req, res) => {
     res.json({
@@ -24,12 +37,37 @@ app.get('/', (req, res) => {
     });
 });
 
-// Contact form endpoint
-app.post('/api/contact', async (req, res) => {
+// Helper function to validate email
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+};
+
+// Helper function to escape HTML (prevent XSS)
+const escapeHtml = (text) => {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, (m) => map[m]);
+};
+
+// Helper function to check for spam keywords
+const containsSpam = (text) => {
+    const spamKeywords = ['viagra', 'casino', 'lottery', 'prize', 'click here', 'buy now'];
+    const lowerText = text.toLowerCase();
+    return spamKeywords.some(keyword => lowerText.includes(keyword));
+};
+
+// Contact form endpoint with rate limiting
+app.post('/api/contact', contactLimiter, async (req, res) => {
     try {
         const { name, email, message } = req.body;
 
-        // Validation
+        // 1. Check if all fields are provided
         if (!name || !email || !message) {
             return res.status(400).json({
                 success: false,
@@ -37,6 +75,15 @@ app.post('/api/contact', async (req, res) => {
             });
         }
 
+        // 2. Validate email format
+        if (!isValidEmail(email)) {
+            return res.status(400).json({
+                success: false,
+                error: 'Please provide a valid email address'
+            });
+        }
+
+        // 3. Check minimum length
         if (message.length < 10) {
             return res.status(400).json({
                 success: false,
@@ -44,14 +91,42 @@ app.post('/api/contact', async (req, res) => {
             });
         }
 
-        console.log(`📧 New contact from: ${name}`);
+        // 4. Check maximum lengths (prevent abuse)
+        if (name.length > 100) {
+            return res.status(400).json({
+                success: false,
+                error: 'Name is too long (max 100 characters)'
+            });
+        }
+
+        if (message.length > 1000) {
+            return res.status(400).json({
+                success: false,
+                error: 'Message is too long (max 1000 characters)'
+            });
+        }
+
+        // 5. Check for spam content
+        if (containsSpam(name) || containsSpam(message)) {
+            return res.status(400).json({
+                success: false,
+                error: 'Your message contains prohibited content'
+            });
+        }
+
+        // 6. Sanitize inputs (escape HTML to prevent XSS)
+        const safeName = escapeHtml(name.trim());
+        const safeEmail = escapeHtml(email.trim());
+        const safeMessage = escapeHtml(message.trim());
+
+        console.log(`📧 New contact from: ${safeName}`);
 
         // Send email via Resend
         const data = await resend.emails.send({
             from: 'Portfolio <onboarding@resend.dev>',
             to: 'krishna.wable.mail@gmail.com',
-            subject: `🎯 New Lead: ${name}`,
-            replyTo: email,
+            subject: `🎯 New Lead: ${safeName}`,
+            replyTo: safeEmail,
             html: `
                 <!DOCTYPE html>
                 <html>
@@ -163,19 +238,19 @@ app.post('/api/contact', async (req, res) => {
                         <div class="content">
                             <div class="field">
                                 <div class="label">👤 Name</div>
-                                <div class="value">${name}</div>
+                                <div class="value">${safeName}</div>
                             </div>
                             
                             <div class="field">
                                 <div class="label">📧 Email Address</div>
                                 <div class="value">
-                                    <a href="mailto:${email}">${email}</a>
+                                    <a href="mailto:${safeEmail}">${safeEmail}</a>
                                 </div>
                             </div>
                             
                             <div class="field">
                                 <div class="label">💬 Message</div>
-                                <div class="message-box">${message}</div>
+                                <div class="message-box">${safeMessage}</div>
                             </div>
                         </div>
                         
