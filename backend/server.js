@@ -13,22 +13,28 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 // Define allowed origins
 const allowedOrigins = [
-    process.env.FRONTEND_URL,
     'https://buildwithkrishna.vercel.app',
-    'http://localhost:5173'
-].filter(Boolean); // Remote undefined/null
+    'http://localhost:5173',
+    process.env.FRONTEND_URL
+].filter(Boolean);
 
 app.use(cors({
-    origin: function (origin, callback) {
-        // allow requests with no origin (like mobile apps or curl requests)
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl)
         if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-            return callback(new Error(msg), false);
+
+        // Check if origin is in the allowed list or starts with our vercel domain
+        const isAllowed = allowedOrigins.some(ao => origin === ao || ao.includes(origin));
+
+        if (isAllowed) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
         }
-        return callback(null, true);
     },
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
