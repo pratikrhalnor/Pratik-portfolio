@@ -5,18 +5,24 @@ dotenv.config();
 
 const createTransporter = () => {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // Use SSL
+    pool: true,   // Reuse connections
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD,
     },
+    // Adding debug logging to help identify the exact point of failure
+    debug: true,
+    logger: true
   });
 
   transporter.verify((error, success) => {
     if (error) {
-      console.log('❌ Email Service Error:', error);
+      console.log('❌ Email Service Verification Error:', error);
     } else {
-      console.log('✅ Email Server is ready');
+      console.log('✅ Email Server is ready to send');
     }
   });
 
