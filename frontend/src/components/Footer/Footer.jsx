@@ -6,16 +6,19 @@ import './Footer.css'
 const RightPanelContent = lazy(() => import('./RightPanelContent'));
 
 function Footer() {
-    const [leftWidth, setLeftWidth] = useState(30) // Percentage for desktop width
-    const [topHeight, setTopHeight] = useState(45) // Percentage for mobile height
+    const [leftWidth, setLeftWidth] = useState(() => window.innerWidth < 1200 ? 95 : 30) // Default to 95% for tablet/mobile/small laptops
     const [isDragging, setIsDragging] = useState(false)
     const [hasInteracted, setHasInteracted] = useState(false)
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+    const [isSmall, setIsSmall] = useState(window.innerWidth < 1200)
     const [introVisible, setIntroVisible] = useState(false)
 
     // Handle Resize
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 768)
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768)
+            setIsSmall(window.innerWidth < 1200)
+        }
         window.addEventListener('resize', handleResize)
         return () => window.removeEventListener('resize', handleResize)
     }, [])
@@ -27,9 +30,9 @@ function Footer() {
             // eslint-disable-next-line no-unused-vars
             const easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
-            const startWidth = 30;
-            const startHeight = 45;
-            const range = 5; // How much to move (30 -> 35 -> 25 -> 30)
+            const isSmallNow = window.innerWidth < 1200;
+            const startWidth = isSmallNow ? 95 : 30;
+            const range = isSmallNow ? 2 : 5; // Smaller range if already at the edge
 
             let startTime = null;
 
@@ -48,14 +51,12 @@ function Footer() {
                 const currentOffset = wave * range;
 
                 setLeftWidth(startWidth + currentOffset);
-                setTopHeight(startHeight + currentOffset); // Syncing vertical drift
 
                 if (progress < 1) {
                     requestAnimationFrame(step);
                 } else {
-                    // Animation done, ensure we land exactly on 30
+                    // Animation done, ensure we land exactly on startWidth
                     setLeftWidth(startWidth);
-                    setTopHeight(startHeight);
 
                     // Show buttons
                     setIntroVisible(true);
@@ -98,18 +99,12 @@ function Footer() {
     const handleMouseMove = (e) => {
         if (!isDragging) return
 
-        if (isMobile) {
-            // Vertical resizing
-            const newHeight = (e.clientY / window.innerHeight) * 100
-            if (newHeight > 20 && newHeight < 80) {
-                setTopHeight(newHeight)
-            }
-        } else {
-            // Horizontal resizing
-            const newWidth = (e.clientX / window.innerWidth) * 100
-            if (newWidth > 10 && newWidth < 90) {
-                setLeftWidth(newWidth)
-            }
+        // Horizontal resizing for all screen sizes (Responsive)
+        const newWidth = (e.clientX / window.innerWidth) * 100
+
+        // Allow full completion (0% for form-only, 100% for image-only)
+        if (newWidth >= 0 && newWidth <= 100) {
+            setLeftWidth(newWidth)
         }
     }
 
@@ -123,21 +118,16 @@ function Footer() {
                 if (!isDragging) return
                 // Touch Logic
                 const touch = e.touches[0]
-                if (isMobile) {
-                    const newHeight = (touch.clientY / window.innerHeight) * 100
-                    if (newHeight > 20 && newHeight < 80) setTopHeight(newHeight)
-                } else {
-                    const newWidth = (touch.clientX / window.innerWidth) * 100
-                    if (newWidth > 10 && newWidth < 90) setLeftWidth(newWidth)
-                }
+                const newWidth = (touch.clientX / window.innerWidth) * 100
+                if (newWidth >= 0 && newWidth <= 100) setLeftWidth(newWidth)
             }}
             onTouchEnd={handleMouseUp}
         >
             <div
                 className={`left-panel ${introVisible ? 'force-hover' : ''}`}
                 style={{
-                    width: isMobile ? '100%' : `${leftWidth}%`,
-                    height: isMobile ? `${topHeight}%` : '100%',
+                    width: `${leftWidth}%`,
+                    height: '100%',
                     flex: 'none'
                 }}
             >
@@ -179,13 +169,13 @@ function Footer() {
                 onTouchStart={handleMouseDown}
             >
                 <div className="resizer-handle">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" style={{ transform: isMobile ? 'rotate(90deg)' : 'none' }}>
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle>
                     </svg>
                 </div>
                 {!hasInteracted && (
                     <div className="resizer-guide">
-                        <span>{isMobile ? "\u2191 Drag \u2193" : "\u2190 Drag \u2192"}</span>
+                        <span>{"\u2190 Drag \u2192"}</span>
                     </div>
                 )}
             </div>
