@@ -1,95 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
+import ibmLogo from "../../assets/certification/ibm_logo.jpeg";
+import "./Footer.css";
 
-const RightPanelContent = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to send message");
-      }
-
-      alert("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    } catch (err) {
-      alert(err.message || "Server error. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+const Footer = () => {
   return (
-    <div className="content-container">
-      <div className="form-section">
-        <div className="form-header">
-          <h2>Let’s Build Something Impactful</h2>
-          <p>Have an idea or opportunity? Drop a message</p>
-        </div>
+    <footer className="footer-container">
 
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Name</label>
-            <input
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
 
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+      {/* DIVIDER */}
+      <div className="footer-divider" />
 
-          <div className="form-group">
-            <label>Message</label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows="3"
-              required
-            />
-          </div>
+      {/* RIGHT — CERTIFICATION */}
+      <div className="footer-cert">
+        <p className="footer-title">Certifications</p>
 
-          <button type="submit" disabled={loading} className="submit-btn">
-            {loading ? "Sending..." : "Connect"}
-          </button>
-        </form>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <img
+            src={ibmLogo}
+            alt="IBM Certification"
+            className="footer-cert-logo"
+          />
+        </a>
       </div>
-    </div>
+
+    </footer>
   );
 };
 
-export default RightPanelContent;
+export default Footer;
