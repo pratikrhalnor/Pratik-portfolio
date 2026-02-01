@@ -63,3 +63,6 @@ cloudflared.exe
 cloudflared*
 node_modules
 .env
+
+# Ignore old backend (Express)
+backend/
