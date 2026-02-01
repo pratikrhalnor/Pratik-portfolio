@@ -1,15 +1,18 @@
-import React, { useLayoutEffect, useRef } from 'react'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import React, { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import NeuralNetwork from './NeuralNetwork';
+import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
-    const containerRef = useRef(null)
-    const imageRef = useRef(null)
+    const containerRef = useRef(null);
+    const imageRef = useRef(null);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
+            // Text animation
             gsap.from('.letter', {
                 y: 5,
                 opacity: 0,
@@ -17,45 +20,44 @@ const Hero = () => {
                 ease: 'power3.out',
                 stagger: 0.15,
                 delay: 0.5
-            })
+            });
 
+            // Image blur on scroll
             gsap.to(imageRef.current, {
                 filter: 'blur(10px)',
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: 'top top',
                     end: 'bottom top',
-                    scrub: 1,
+                    scrub: 1
                 }
-            })
+            });
+        }, containerRef);
 
-        }, containerRef)
-
-        return () => ctx.revert()
-    }, [])
+        return () => ctx.revert();
+    }, []);
 
     return (
-        <div ref={containerRef}>
-            <div className='section h-screen flex items-center justify-center text-white text-[24vw] font-bold font-[Teko] tracking-widest overflow-hidden' data-color="#000000">
-                <span className='letter'>P</span>
-                <span className='letter'>R</span>
-                <span className='letter'>A</span>
-                <span className='letter'>T</span>
-                <span className='letter'>I</span>
-                <span className='letter'>K</span>
-                
+        <div ref={containerRef} className="hero-wrapper">
+            {/* Neural network background */}
+            <NeuralNetwork />
 
-                <img
-                    ref={imageRef}
-                    className='absolute bottom-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[35%] max-w-[500px] h-auto object-contain will-change-[filter]'
-                    src="/Hero.png"
-                    alt=""
-                    loading="eager"
-                    fetchpriority="high"
-                />
+            {/* Hero content */}
+            <div
+                className="section h-screen flex items-center justify-center text-white text-[24vw] font-bold font-[Teko] tracking-widest overflow-hidden relative z-10"
+                data-color="#000000"
+            >
+                <span className="letter">P</span>
+                <span className="letter">R</span>
+                <span className="letter">A</span>
+                <span className="letter">T</span>
+                <span className="letter">I</span>
+                <span className="letter">K</span>
+
+                
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Hero
+export default Hero;
