@@ -58,3 +58,8 @@ coverage/
 
 # Large files
 cloudflared.exe
+# binaries
+*.exe
+cloudflared*
+node_modules
+.env
