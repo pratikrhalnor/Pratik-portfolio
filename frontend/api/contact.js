@@ -1,43 +1,56 @@
 import { Resend } from "resend";
-import rateLimit from "express-rate-limit";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const isValidEmail = (email) =>
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
-  }
-
-  const { name, email, message } = req.body;
-
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: "Missing fields" });
-  }
-
-  if (!isValidEmail(email)) {
-    return res.status(400).json({ error: "Invalid email" });
-  }
-
   try {
-    await resend.emails.send({
+    // Method guard
+    if (req.method !== "POST") {
+      return res.status(405).json({ error: "Method Not Allowed" });
+    }
+
+    // Body guard
+    const { name, email, message } = req.body || {};
+
+    if (!name || !email || !message) {
+      return res.status(400).json({
+        error: "Missing required fields",
+      });
+    }
+
+    // Env guard
+    if (!process.env.RESEND_API_KEY) {
+      console.error("❌ RESEND_API_KEY missing");
+      return res.status(500).json({
+        error: "Server misconfiguration",
+      });
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    // Send email
+    const response = await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
-      to: "your_email@gmail.com",
+      to: "krishna.wable.mail@gmail.com",
+      replyTo: email,
       subject: `New Portfolio Lead: ${name}`,
-      reply_to: email,
       html: `
-        <h2>New Contact</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
+        <h2>New Portfolio Contact</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
     });
 
-    return res.status(200).json({ success: true });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Failed to send email" });
+    return res.status(200).json({
+      success: true,
+      message: "Message sent successfully",
+    });
+
+  } catch (error) {
+    console.error("🔥 CONTACT API ERROR:", error);
+
+    return res.status(500).json({
+      error: "Internal Server Error",
+    });
   }
 }
