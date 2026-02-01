@@ -9,9 +9,8 @@ const RightPanelContent = () => {
     });
 
     const [loading, setLoading] = useState(false);
-    const BACKEND_URL =
-        import.meta.env.VITE_BACKEND_URL ||
-        'https://portfolio-u8g6.onrender.com/api/contact';
+    const BACKEND_URL = "/api/contact";
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
