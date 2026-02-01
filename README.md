@@ -2,6 +2,8 @@
 
 # 🌟 Pratik Halnor — Portfolio & Labs
 
+## Live at - https://pratikhalnor.vercel.app/
+
 
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live-00E5FF?style=for-the-badge&logo=vercel&logoColor=white)](https://github.com/pratikrhalnor/Pratik-portfolio)
@@ -76,21 +78,21 @@ Nov 2025
 - Built an ML pipeline using Python and scikit-learn (Random Forest) to detect anomalous/fraudulent GST filings.
 - Engineered features such as ITC mismatch rate and supplier concentration; used feature importance to surface key fraud indicators.
 - Implemented evaluation metrics and visualizations using Matplotlib.  
-- GitHub: (add repository link)
+
 
 Inventory Portal — Sai Sundha Steel Traders Catalog  
 Mar 2025
 - Developed a responsive product catalog for construction materials (steel, cement, etc.) using HTML, CSS, and JavaScript.
 - Integrated an AI‑powered chatbot with Chatbase via an iframe to provide live product/pricing information to users.
 - Deployed a simple UI for browsing product specs and initiating contact.  
-- Live demo: (add website link)
+
 
 Smart Dust Suppression System — IoT Environmental Monitoring  
 (Year)
 - Built an automated dust suppression system using GPY210 particulate sensor, ESP32, and Blynk IoT.
 - Implemented logic to trigger water foggers when particulate readings exceeded safety thresholds to reduce airborne dust.
 - Demonstrated end‑to‑end sensor → microcontroller → cloud dashboard flow.  
-- Demo: (add demo link)
+
 
 ---
 
