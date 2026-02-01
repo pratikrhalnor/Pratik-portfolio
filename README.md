@@ -1,228 +1,169 @@
 <div align="center">
 
-# 🌟 Krishna Wable's Digital Space
+# 🌟 Pratik Halnor — Portfolio & Labs
 
-```ascii
-╔══════════════════════════════════════════════════════════════╗
-║  Full Stack Developer × AI Enthusiast × Problem Solver      ║
-║  Building the future, one commit at a time                   ║
-╚══════════════════════════════════════════════════════════════╝
-```
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live-00E5FF?style=for-the-badge&logo=vercel&logoColor=white)](https://buildwithkrishna.vercel.app/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/krishna-wable/)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/krish070904)
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-00E5FF?style=for-the-badge&logo=vercel&logoColor=white)](https://github.com/pratikrhalnor/Pratik-portfolio)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pratikhalnor)
+[![GitHub](https://img.shields.io/badge/GitHub-View%20Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pratikrhalnor)
 
 </div>
 
 ---
 
-## 🎯 What's This?
+## About this repo
 
-My personal portfolio website — where design meets functionality. Built with modern web tech and a touch of creativity. No templates, no shortcuts, just pure code and caffeine ☕
-
-**Live:** [buildwithkrishna.vercel.app](https://buildwithkrishna.vercel.app/)
+A compact portfolio site + lightweight backend that demonstrates my approach to building performant frontends, pragmatic backends, and AI/ML prototypes. The repository contains a Vite + React frontend and a small Express API used for the contact/email flow.
 
 ---
 
-## ⚡ Tech Arsenal
+## Contact
 
-<table>
-<tr>
-<td width="50%">
+Pratik Halnor  
++91 80553 24569 | halnorpratik2004@gmail.com  
+LinkedIn: [pratikhalnor](https://www.linkedin.com/in/pratikhalnor) · GitHub: [pratikrhalnor](https://github.com/pratikrhalnor)
 
-### Frontend Magic ✨
-```javascript
-const stack = {
-  framework: "React 19",
-  animations: "GSAP + Lenis",
-  styling: "Vanilla CSS",
-  build: "Vite",
-  deployment: "Vercel"
-}
+---
+
+## Education
+
+- Sanjivani University, Ahilyanagar, Maharashtra  
+  B.Tech, Computer Science Engineering (Specialization: AI & ML) — CGPA: 7.12/10  
+  Aug 2024 – May 2027  
+  Relevant coursework: DSA, DBMS, Operating Systems
+
+- Sanjivani K.B.P. Polytechnic, Ahilyanagar, Maharashtra  
+  Diploma in Mechatronics  
+  Aug 2020 – Jan 2024
+
+- Ashok English Medium School, Ahilyanagar — SSC  
+  Class X — 67% (Mar 2020)
+
+---
+
+## Experience
+
+Larsen & Toubro Precision Engineering Systems — Diploma Engineer (Apprenticeship)  
+Pune, Maharashtra · Jun 2023 – Jun 2024
+- Completed a one‑year apprenticeship working on defence-grade electronic systems: integration, testing and validation for force deployment.
+- Supported assembly and testing of naval ASW launcher systems — contributed to the successful assembly and validation of 12+ units that met stringent operational standards.
+- Followed precision manufacturing and quality procedures within regulated production environments.
+
+Techligence — AI & Mechatronics Intern  
+Pune, Maharashtra · Jun 2025 – Jul 2025
+- Designed and built a 4WD robotic chassis using Arduino, ESP32, and Raspberry Pi for remote operation and sensor integration.
+- Configured Raspberry Pi with Ubuntu and SSH for reliable remote access, reducing hands‑on testing time by ~60% and enabling >30m remote control.
+- Developed microcontroller firmware in C/C++ and implemented wireless command protocols for real‑time motor control and navigation.
+
+---
+
+## Technical Skills
+
+- Languages: Python, Java, C/C++, JavaScript  
+- AI/ML & CV: scikit-learn, NumPy, Pandas, Matplotlib, OpenCV, YOLOv8, IBM Watson  
+- Web & APIs: React, Flask, Express, Angular  
+- Databases & Cloud: PostgreSQL, MongoDB  
+- Tools: Git, Docker, Linux CLI, Power BI, Blynk IoT  
+- Languages: English (Fluent), Marathi (Native), German (Basic)
+
+---
+
+## Selected Projects
+
+GST Anomaly Detection System — Finance & Compliance Data Analysis  
+Nov 2025
+- Built an ML pipeline using Python and scikit-learn (Random Forest) to detect anomalous/fraudulent GST filings.
+- Engineered features such as ITC mismatch rate and supplier concentration; used feature importance to surface key fraud indicators.
+- Implemented evaluation metrics and visualizations using Matplotlib.  
+- GitHub: (add repository link)
+
+Inventory Portal — Sai Sundha Steel Traders Catalog  
+Mar 2025
+- Developed a responsive product catalog for construction materials (steel, cement, etc.) using HTML, CSS, and JavaScript.
+- Integrated an AI‑powered chatbot with Chatbase via an iframe to provide live product/pricing information to users.
+- Deployed a simple UI for browsing product specs and initiating contact.  
+- Live demo: (add website link)
+
+Smart Dust Suppression System — IoT Environmental Monitoring  
+(Year)
+- Built an automated dust suppression system using GPY210 particulate sensor, ESP32, and Blynk IoT.
+- Implemented logic to trigger water foggers when particulate readings exceeded safety thresholds to reduce airborne dust.
+- Demonstrated end‑to‑end sensor → microcontroller → cloud dashboard flow.  
+- Demo: (add demo link)
+
+---
+
+## Certifications & Achievements
+
+- Best Paper — Intl. Conf. on Sustainable Innovation in Engineering, Science & Management (2026)  
+  "Lightweight Real-Time Footfall Counting Using CPU‑Optimized YOLOv8" — Top 8 among 100+ submissions
+- IBM Watson Studio — AutoAI pipelines & model deployment  
+- IBM SPSS — Predictive Modeling & statistical analysis  
+- IBM DevOps Fundamentals — CI/CD and cloud deployment workflows
+
+---
+
+## Environment
+
+Frontend (.env)
+```env
+VITE_BACKEND_URL=https://your-backend.example.com
 ```
 
-</td>
-<td width="50%">
-
-### Backend Power 🚀
-```javascript
-const api = {
-  runtime: "Node.js",
-  framework: "Express",
-  email: "Resend API",
-  security: "Rate Limiting + XSS Protection",
-  deployment: "Render"
-}
+Backend (.env)
+```env
+RESEND_API_KEY=your_resend_api_key
+PORT=5000
+RATE_LIMIT_WINDOW_MS=60000
+RATE_LIMIT_MAX=5
 ```
 
-</td>
-</tr>
-</table>
-
 ---
 
-## 🎨 Features That Slap
+## Quick start
 
-- **🌊 Smooth Scrolling** - Lenis-powered buttery smooth experience
-- **🎭 GSAP Animations** - Eye-catching transitions and effects
-- **📱 Fully Responsive** - Looks fire on any device
-- **🎯 Interactive Cursor** - Custom cursor that follows your moves
-- **📧 Contact Form** - Spam-protected with rate limiting
-- **🔒 Secure** - XSS protection, input validation, the works
-- **⚡ Fast AF** - Optimized for performance
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
+Prereqs
 ```bash
-node >= 18.0.0
-npm >= 9.0.0
+node >= 18
+npm >= 9
 ```
 
-### Clone & Install
+Clone & run
 ```bash
-# Clone this bad boy
-git clone https://github.com/krish070904/PORTFOLIO.git
-cd PORTFOLIO
+git clone https://github.com/pratikrhalnor/Pratik-portfolio.git
+cd Pratik-portfolio
 
-# Frontend setup
+# Frontend
 cd frontend
 npm install
-
-# Backend setup
-cd ../backend
-npm install
-```
-
-### Run Locally
-```bash
-# Terminal 1 - Frontend (http://localhost:5173)
-cd frontend
 npm run dev
 
-# Terminal 2 - Backend (http://localhost:5000)
-cd backend
+# Backend (in a separate terminal)
+cd ../backend
+npm install
 npm start
 ```
 
 ---
 
-## 🏗️ Project Structure
+## Design & Goals
 
-```
-PORTFOLIO/
-│
-├── frontend/                # React + Vite magic
-│   ├── src/
-│   │   ├── components/      # Reusable UI components
-│   │   │   ├── Hero/        # Landing section
-│   │   │   ├── About/       # About me section
-│   │   │   ├── Projects/    # Project showcase
-│   │   │   ├── Experience/  # Work timeline
-│   │   │   └── Footer/      # Contact form
-│   │   ├── assets/          # Images, icons, etc.
-│   │   └── App.jsx          # Main app orchestrator
-│   └── package.json
-│
-├── backend/                 # Express API
-│   ├── server.js            # Main server file
-│   └── package.json
-│
-└── README.md                # You are here 👋
-```
+- Deliver a fast, animation-forward frontend that prioritizes usability and accessibility.  
+- Keep backend responsibilities narrow: contact/email handling with robust anti‑spam measures.  
+- Showcase compact AI/ML demos that are reproducible and easy to extend.
 
 ---
 
-## 🎯 Key Highlights
+## License
 
-### 💼 Currently
-**Full Stack Developer @ Bosch India**  
-Building plant-wide deployment systems and modernizing manufacturing operations
-
-### 🏆 Notable Projects
-
-**🏥 HealthSync** - AI-powered health management (MERN + BioMistral 7B + ResNet-50)  
-**💰 Credlo** - Smart loan comparison platform (MERN + AI)  
-**📸 Instagram Automation** - Automated reel posting (Python + GitHub Actions)
-
-### 🎓 Certified By
-- AWS (Cloud Practitioner)
-- Stanford (Machine Learning Specialization)
-- Simplilearn (Full Stack Development)
-- Accenture (Developer Program)
-
----
-
-## 🔧 Environment Setup
-
-### Frontend `.env`
-```env
-VITE_BACKEND_URL=your_backend_url_here
-```
-
-### Backend `.env`
-```env
-RESEND_API_KEY=your_resend_api_key
-PORT=5000
-```
-
----
-
-## 📊 Performance Stats
-
-- **Lighthouse Score:** 95+ across the board
-- **First Contentful Paint:** < 1.5s
-- **Time to Interactive:** < 3s
-- **Bundle Size:** Optimized with code splitting
-
----
-
-## 🎨 Design Philosophy
-
-> "Code is poetry, UI is art, and performance is the canvas."
-
-- **Minimalist** - Clean, focused, no clutter
-- **Smooth** - Animations that feel natural
-- **Responsive** - Mobile-first approach
-- **Accessible** - ARIA labels, keyboard navigation
-- **Fast** - Optimized for speed
-
----
-
-## 🤝 Want to Collaborate?
-
-I'm always down to work on cool projects! Hit me up:
-
-- 📧 Email: krishna.wable.mail@gmail.com
-- 💼 LinkedIn: [krishna-wable](https://www.linkedin.com/in/krishna-wable/)
-- 🐙 GitHub: [@krish070904](https://github.com/krish070904)
-
----
-
-## 📝 License
-
-MIT License - Feel free to fork, modify, and use for your own portfolio!
+MIT — reuse and adapt however you like.
 
 ---
 
 <div align="center">
 
-### 💭 Fun Fact
-
-```javascript
-while (alive) {
-  eat();
-  sleep();
-  code();
-  repeat();
-}
-```
-
-**Made with 💙 and lots of ☕ by Krishna Wable**
-
-⭐ **Star this repo if you vibe with it!**
+Made with curiosity, pragmatic engineering, and strong coffee ☕️  
+— Pratik Halnor
 
 </div>
