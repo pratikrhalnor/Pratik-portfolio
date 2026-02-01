@@ -9,19 +9,17 @@ export default async function handler(req, res) {
   try {
     const { name, email, message } = req.body || {};
 
-    // Validation
+    // Basic validation
     if (!name || !email || !message) {
       return res.status(400).json({
-        success: false,
         error: "All fields are required",
       });
     }
 
     if (!process.env.RESEND_API_KEY) {
-      console.error("❌ Missing RESEND_API_KEY");
+      console.error("❌ RESEND_API_KEY missing");
       return res.status(500).json({
-        success: false,
-        error: "Server misconfiguration",
+        error: "Server misconfigured",
       });
     }
 
@@ -46,10 +44,9 @@ export default async function handler(req, res) {
       message: "Message sent successfully",
     });
 
-  } catch (err) {
-    console.error("🔥 API ERROR:", err);
+  } catch (error) {
+    console.error("🔥 CONTACT API ERROR:", error);
     return res.status(500).json({
-      success: false,
       error: "Internal Server Error",
     });
   }
