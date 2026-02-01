@@ -1,35 +1,35 @@
 import { Resend } from "resend";
 
 export default async function handler(req, res) {
-  try {
-    // Method guard
-    if (req.method !== "POST") {
-      return res.status(405).json({ error: "Method Not Allowed" });
-    }
+  // Allow only POST
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
 
-    // Body guard
+  try {
     const { name, email, message } = req.body || {};
 
+    // Validation
     if (!name || !email || !message) {
       return res.status(400).json({
-        error: "Missing required fields",
+        success: false,
+        error: "All fields are required",
       });
     }
 
-    // Env guard
     if (!process.env.RESEND_API_KEY) {
-      console.error("❌ RESEND_API_KEY missing");
+      console.error("❌ Missing RESEND_API_KEY");
       return res.status(500).json({
+        success: false,
         error: "Server misconfiguration",
       });
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    // Send email
-    const response = await resend.emails.send({
+    await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
-      to: "krishna.wable.mail@gmail.com",
+      to: "halnorpratik2004@gmail.com",
       replyTo: email,
       subject: `New Portfolio Lead: ${name}`,
       html: `
@@ -46,10 +46,10 @@ export default async function handler(req, res) {
       message: "Message sent successfully",
     });
 
-  } catch (error) {
-    console.error("🔥 CONTACT API ERROR:", error);
-
+  } catch (err) {
+    console.error("🔥 API ERROR:", err);
     return res.status(500).json({
+      success: false,
       error: "Internal Server Error",
     });
   }
