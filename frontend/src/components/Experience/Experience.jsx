@@ -1,18 +1,20 @@
 import React, { useEffect, useState, useMemo, memo, useCallback } from 'react'
 import '../../App.css'
 import './Experience.css'
-import SamsaraLogo from '../../assets/Experience logo/Samsara.png'
-import Swifty9Logo from '../../assets/Experience logo/Swifty9.png'
+
+import ltLogo from '../../assets/Experience logo/l&t logo1.jpeg'
+import techLogo from '../../assets/Experience logo/techligence.png'
+
 
 /* --- CONSTANTS & CONFIGURATION --- */
 const EXPERIENCE_DATA = [
     {
         id: "1",
-        year: "2025",
-        date: "Jun 2025 - Oct 2025",
-        image: SamsaraLogo,
-        role: "AI Intern",
-        desc: "Spearheaded the fine-tuning of Large Language Models (LLMs) to enhance domain-specific accuracy. Engineered robust backend architecture for an automated WhatsApp conversational agent, optimizing response latency and scalability.",
+        year: "2023",
+        date: "Jun 2023 – Jun 2024",
+        image: ltLogo,
+        role: "Diploma Engineer Apprentice",
+        desc: "Completed a one-year apprenticeship at L&T Precision Engineering Systems in the defence sector. Assisted in the integration, assembly, testing, and validation of mission-critical electronic systems. Contributed to assembling and testing over 12 ASW launcher systems, ensuring full operational readiness and compliance with strict naval defence standards.",
         emergeDir: "top",
         position: "md:bottom-16 md:left-12",
         origin: "origin-bottom-left",
@@ -21,28 +23,17 @@ const EXPERIENCE_DATA = [
     {
         id: "2",
         year: "2025",
-        date: "Nov 2025 - Dec 2025",
-        image: Swifty9Logo,
-        role: "UI/UX Designer",
-        desc: "Crafted intuitive, high-fidelity user interfaces for cross-platform web and mobile applications. Implemented human-centered design principles to elevate user engagement and streamline complex user journeys.",
+        date: "Jun 2025 – Jul 2025",
+        image: techLogo,
+        role: "AI & Mechatronics Intern",
+        desc: "Developed a remotely operated 4WD robotic chassis using Arduino, ESP32, and Raspberry Pi. Configured Raspberry Pi with Ubuntu and SSH for long-distance remote control, reducing testing time by 60%. Programmed microcontroller firmware in C/C++ and implemented wireless command protocols for real-time motor control and sensor integration.",
         emergeDir: "bottom",
         position: "md:top-8 md:left-1/2 md:-translate-x-1/2",
         origin: "origin-top",
         activeOnYear: "2024"
-    },
-    {
-        id: "3",
-        year: "2026",
-        date: "Jan 2026 - Jun 2026",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Bosch-logo.svg/2560px-Bosch-logo.svg.png",
-        role: "Full Stack Developer",
-        desc: "Architecting a comprehensive, plant-wide deployment system to modernize manufacturing operations. Leading the migration from legacy infrastructure to a cutting-edge, scalable full-stack ecosystem.",
-        emergeDir: "top",
-        position: "md:bottom-16 md:right-12",
-        origin: "origin-bottom-right",
-        activeOnYear: "2025"
     }
 ];
+
 
 /* --- PURE UI COMPONENTS --- */
 

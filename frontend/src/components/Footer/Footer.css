@@ -15,16 +15,15 @@
 }
 
 .left-panel {
-  /* Flex property is now handled inline by React */
-  background-color: #000;
+  background-color: transparent; /* inherit app background */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
   min-width: 10%;
-  /* Safety min-width */
 }
+
 
 /* Resizer styling */
 .resizer {
@@ -103,9 +102,18 @@
   z-index: 1;
 }
 
-.left-panel:hover::after {
-  opacity: 1;
+.left-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;          /* stays hidden */
+  pointer-events: none;
+  z-index: 1;
 }
+
 
 /* Wrapper for centering and containment */
 .overlay-buttons-wrapper {
@@ -131,10 +139,7 @@
   pointer-events: auto;
 }
 
-.left-panel:hover::after,
-.left-panel.force-hover::after {
-  opacity: 1;
-}
+
 
 .overlay-button {
   /* Remove absolute positioning */
@@ -180,10 +185,10 @@
 }
 
 /* Blur the image on hover or when intro logic forces it */
-.left-panel:hover .sidebar-image,
-.left-panel.force-hover .sidebar-image {
-  filter: blur(4px);
+.sidebar-image {
+  filter: none;
 }
+
 
 .right-panel {
   flex: 1;
@@ -476,7 +481,7 @@
   background-color: rgba(255, 255, 255, 0.8);
   /* Semi-transparent white bg to handle dark/light logos */
   padding: 4px;
-  height: 38px;
+  height: 40px;
   /* Slightly smaller height to save vertical space */
   width: auto;
   object-fit: contain;
@@ -522,6 +527,6 @@
   }
 
   .cert-logo {
-    height: 32px;
+    height: 36px;
   }
 }

@@ -37,19 +37,19 @@ const Hero = () => {
     return (
         <div ref={containerRef}>
             <div className='section h-screen flex items-center justify-center text-white text-[24vw] font-bold font-[Teko] tracking-widest overflow-hidden' data-color="#000000">
-                <span className='letter'>K</span>
+                <span className='letter'>P</span>
                 <span className='letter'>R</span>
-                <span className='letter'>I</span>
-                <span className='letter'>S</span>
-                <span className='letter'>H</span>
-                <span className='letter'>N</span>
                 <span className='letter'>A</span>
+                <span className='letter'>T</span>
+                <span className='letter'>I</span>
+                <span className='letter'>K</span>
+                
 
                 <img
                     ref={imageRef}
                     className='absolute bottom-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[35%] max-w-[500px] h-auto object-contain will-change-[filter]'
                     src="/Hero.png"
-                    alt="Krishna Wable"
+                    alt=""
                     loading="eager"
                     fetchpriority="high"
                 />

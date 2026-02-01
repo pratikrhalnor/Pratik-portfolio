@@ -2,10 +2,10 @@ import React, { useRef, useEffect, useState, useMemo } from 'react';
 import gsap from 'gsap';
 import { Github, ExternalLink } from 'lucide-react';
 import './ProjectCarousel.css';
-import healthSyncImg from '../../assets/Healthsync/healthsync.png';
-import credloImg from '../../assets/Credlo/credlo.avif';
-import instaImg from '../../assets/instagram automation/insta.png';
-import keImg from '../../assets/krishnaEnterprises/ke.png';
+
+import gstImg from '../../assets/GSTAnomaly/gst.png'
+import inventoryImg from '../../assets/SaiSundha/inventory.avif'
+import dustImg from '../../assets/DustSuppresion/dust.jpg'
 
 const ProjectCarousel = () => {
     const stackRef = useRef(null);
@@ -22,47 +22,37 @@ const ProjectCarousel = () => {
     const activeIndexRef = useRef(0);
 
     const projects = useMemo(() => [
-        {
-            id: 1,
-            title: "HEALTHSYNC",
-            desc: "AI-Powered Health Management System built with MERN Stack. Features BioMistral 7B for symptom analysis, ResNet-50 for image classification, medication reminders, and personalized diet plans.",
-            tech: ["MERN", "AI"],
-            icon: <img src={healthSyncImg} alt="HealthSync" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />,
-            color: "#e6d222ff",
-            live: "https://healthsync-care.vercel.app/",
-            github: "https://github.com/krish070904/HEALTHSYNC_MERN"
-        },
-        {
-            id: 2,
-            title: "CREDLO",
-            desc: "Smart Loan & Credit Health Assistant. Compare loans, monitor credit health, and keep finances stress-free in one smart place.",
-            tech: ["MERN", "AI"],
-            icon: <img src={credloImg} alt="Credlo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />,
-            color: "#00E5FF",
-            live: "https://credlo.framer.website/",
-            github: "https://github.com/krish070904/CredLo"
-        },
-        {
-            id: 3,
-            title: "Instagram Automation",
-            desc: "Automated Reel posting system scheduling and publishing video content. Perfect for creators and marketers ensuring consistent posting without intervention.",
-            tech: ["Python", "GitHub Actions", "Gemini"],
-            icon: <img src={instaImg} alt="Instagram" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />,
-            color: "#c53f6cff",
-            live: null,
-            github: "https://github.com/krish070904/ig-reel-automation"
-        },
-        {
-            id: 4,
-            title: "Krishna Enterprises",
-            desc: "Client website establishing global internet recognition and successfully facilitating international commercial orders from Malaysia.",
-            tech: ["HTML", "CSS", "JS"],
-            icon: <img src={keImg} alt="KE" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />,
-            color: "#76FF03",
-            live: "https://krishna-enterprises-nashik.vercel.app/",
-            github: "https://github.com/krish070904/-krishna-enterprises"
-        },
-    ], []);
+    {
+        id: 1,
+        title: "GST Anomaly Detection System",
+        desc: "Machine learning–based system to identify fraudulent GST filings. Built an end-to-end ML pipeline and applied Random Forest to analyze key fraud indicators such as ITC mismatch rate and supplier concentration.",
+        tech: ["Python", "Scikit-learn", "ML"],
+        icon: <img src={gstImg} alt="GST ML Project" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />,
+        color: "#e6d222ff",
+        live: null,
+        github: "https://github.com/pratikrhalnor"
+    },
+    {
+        id: 2,
+        title: "Inventory Portal – Sai Sundha Steel Traders",
+        desc: "Web-based inventory and product catalog system for a construction materials business. Integrated an AI-powered chatbot using Chatbase to provide real-time product and pricing information to customers.",
+        tech: ["HTML", "CSS", "JavaScript", "AI Chatbot"],
+        icon: <img src={inventoryImg} alt="Inventory Portal" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />,
+        color: "#00E5FF",
+        live: null,
+        github: "https://github.com/pratikrhalnor"
+    },
+    {
+        id: 3,
+        title: "Smart Dust Suppression System",
+        desc: "IoT-based environmental monitoring system that activates water foggers when dust levels exceed safety limits. Used GPY210 particulate sensor with ESP32 and Blynk IoT platform for real-time monitoring and control.",
+        tech: ["IoT", "ESP32", "Blynk"],
+        icon: <img src={dustImg} alt="IoT Project" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />,
+        color: "#c53f6cff",
+        live: null,
+        github: "https://github.com/pratikrhalnor"
+    }
+], []);
 
 
 
